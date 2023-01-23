@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Profile - Student</title>
+        {% load static %}
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+  <body>
+
+
+
+      {% block content %}
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCEFCD;">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="choresFeed2.html">
+                <img 
+                    src= "{% static 'images\ElderLogo.PNG' %}"
+                    class="rounded float-start" 
+                    alt="logo" 
+                    width="70" 
+                    height="70"
+                />
+            </a>
+            <!-- Profile -->
+            <a class="d-flex align-items-center hidden-arrow" href="myProfile2.html">
+                <img
+                    src="/media/{{item.profile_pic}}"
+                    class="rounded-circle float-end"
+                    height="50"
+                    alt="profile"
+                />
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+      <h1>Register</h1>
+      <form  method="post", enctype="multipart/form-data", action="{% url 'register'%}" >
+        {% csrf_token %}
+            <div class="form-group", style="max-width: 300px;"style="margin-top: 30px;">
+                First Name:
+                {{ form.first_name }}
+            </div>
+    
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Last Name:
+                {{ form.last_name }}
+            </div>
+
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Email:
+              {{ form.email }}
+            </div>
+            <div class="form-group", style="margin-top: 30px;", style="width: 300px;">
+                Type:
+              {{ form.type }}
+            </div>
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Birthday:
+              {{ form.birth_date }}
+            </div>
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                A little bit about yourself...<br style="margin-top: 30px;">
+                {{ form.description }}
+             </div>
+             <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Address:
+                {{ form.address }}
+            </div>
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Upload yout picture...
+                {{ form.profile_pic }}
+            </div> 
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+      </form>
+    </div>
+    {% endblock %}
+
+
+  </body>
+</html>
+    <!-- <a href=""><button type="submit" class="btn btn-success">Register</button></a>
+</form> -->

@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header, main, footer, nav, aside, section, div {
+    display: block;
+}
+
+.wrapper {
+    margin: 0px 25px;
+    margin-bottom: 70px;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* login */
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #FCEFCD;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #FCEFCD(106, 17, 203, 1), #FCEFCD(37, 117, 252, 1))
+}
+
+
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
+  }

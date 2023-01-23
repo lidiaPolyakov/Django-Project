@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Profile - Student</title>
+        {% load static %}
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+<body>
+  {% block content %}
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCEFCD;">
+          <div class="container-fluid">
+              <!-- Logo -->
+              <a class="navbar-brand" href="choresFeed2.html">
+                  <img 
+                      src= "{% static 'images\ElderLogo.PNG' %}"
+                      class="rounded float-start" 
+                      alt="logo" 
+                      width="70" 
+                      height="70"
+                  />
+              </a>
+              <!-- Profile -->
+              <a class="d-flex align-items-center hidden-arrow" href="myProfile2.html">
+                  <img
+                      src="/media/{{item.profile_pic}}"
+                      class="rounded-circle float-end"
+                      height="50"
+                      alt="profile"
+                  />
+              </a>
+          </div>
+      </nav>
+
+
+      <section class="vh-100" style="background-color: #ffffff;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-12 col-xl-4">
+                    <div class="card" style="border-radius: 15px; background-color: #eee;">
+                        
+                        <a href="/signout" style="text-decoration: none; color: black">
+                            <div class="media">
+                                <img class="mr-3" src="{% static 'images\logoutIcon.PNG' %}" style="height: 30px; margin-left: 15px; margin-top: 15px;">
+                                <div class="media-body">
+                                    <h5 class="mt-3" style="margin-top: 15px;">Log out</h5>
+                                </div>
+                            </div>
+                        </a>
+    
+                        <div class="card-body text-center">
+                            <!-- img-profile -->
+                            <div class="mt-3 mb-4">
+                                <img src="/media/{{item.profile_pic}}" class="rounded-circle img-fluid" style="width: 100px;" />
+                            </div>
+    
+                            <h4 class="mb-2"> {{ item.first_name }} {{ item.last_name }}</h4>
+                            <p class="text-muted mb-4"> {{ item.description }}</p>
+    
+                            <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                                <div>
+                                    <p class="mb-2 h5">Address</p>
+                                    <p class="text-muted mb-0">{{ item.address }}</p>
+                                </div>
+                                <div class="px-3">
+                                    <p class="mb-2 h5">Email</p>
+                                    <p class="text-muted mb-0">{{ item.email }}</p>
+                                </div>
+                                <div>
+                                    <p class="mb-2 h5">Volunteer left hours</p>
+                                    <p class="text-muted mb-0">{{ item.remaining_hours }}</p>
+                                </div>
+                            </div>
+                        
+                            <a href="{% url 'edit_profile' pk=item.user_id_id %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
+                                edit
+                            </a>
+                                    
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  {% endblock %}
+
+  
+  <footer class="page-footer" style="background-color: #FCEFCD; overflow: hidden; position: fixed; bottom: 0; width: 100%;">
+    <div class="d-flex justify-content-around">
+        <a href="myRegistrations2.html">
+            <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
+        </a>
+        <a href="choresFeed2.html">
+            <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
+        </a>
+        <a href="profile/"  >
+            <img src="{% static 'images\profileIcon.PNG' %}" height="65" alt="Profile">
+        </a>
+    </div>
+</footer>
+ 
+</body>
+</html>
