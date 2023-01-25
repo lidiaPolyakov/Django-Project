@@ -72,10 +72,14 @@
                                     <p class="mb-2 h5">Email</p>
                                     <p class="text-muted mb-0">{{ item.email }}</p>
                                 </div>
+
+                                {% if item.type == 'S' %}
                                 <div>
                                     <p class="mb-2 h5">Volunteer left hours</p>
-                                    <p class="text-muted mb-0">{{ item.remaining_hours }}</p>
+                                    <p class="text-muted mb-0">{{item.remaining_hours }}</p>
                                 </div>
+                                {% endif %}
+
                             </div>
                         
                             <a href="{% url 'edit_profile' pk=item.user_id_id %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
@@ -89,22 +93,31 @@
             </div>
         </div>
     </section>
+
+
+    <footer class="page-footer" style="background-color: #FCEFCD; overflow: hidden; position: fixed; bottom: 0; width: 100%;">
+        <div class="d-flex justify-content-around">
+            <a href="{% url 'my_chores' %}">
+                <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
+            </a>
+             {% if item.type == 'S' %}
+            <a href="choresFeed2.html">
+                <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
+            </a>
+            {% else %}
+            <a href="{% url 'create_chore' %}">
+                <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
+            </a>
+            {% endif %}
+            <a href="{% url 'profile' %}"  >
+                <img src="{% static 'images\profileIcon.PNG' %}" height="65" alt="Profile">
+            </a>
+        </div>
+    </footer>
   {% endblock %}
 
   
-  <footer class="page-footer" style="background-color: #FCEFCD; overflow: hidden; position: fixed; bottom: 0; width: 100%;">
-    <div class="d-flex justify-content-around">
-        <a href="myRegistrations2.html">
-            <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
-        </a>
-        <a href="choresFeed2.html">
-            <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
-        </a>
-        <a href="profile/"  >
-            <img src="{% static 'images\profileIcon.PNG' %}" height="65" alt="Profile">
-        </a>
-    </div>
-</footer>
+
  
 </body>
 </html>

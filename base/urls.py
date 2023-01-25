@@ -13,6 +13,9 @@ urlpatterns = [
     path('profile/',views.profile, name='profile'),
     path('register/',views.register, name='register'),
     path('edit_profile/<str:pk>/',views.edit_profile, name='edit_profile'),
+    path('create_chore/', views.create_chore, name='create_chore'),
+    path('my_chores/', views.my_chores, name='my_chores'),
+    #path('delete_profile/<str:pk>/',views.delete_profile, name='delete_profile'),
     #path(r'form',views.register, name='register'),
 ]
 

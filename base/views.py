@@ -7,8 +7,8 @@ from django.contrib.auth import logout
 #from django.shortcuts import HttpResponseRedirect
 #from django.http import HttpResponse
 
-from .forms import Register
-from .models import Users
+from .forms import Register, ChoreForm
+from .models import Users, Chore
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -41,6 +41,7 @@ def signup(request):
 
 @login_required(login_url='/login/') 
 def register(request):
+        #initial_data = {'remaining_hours':'250'}
         if request.method == 'POST':
             form = Register(request.POST, request.FILES)
             if form.is_valid():
@@ -52,18 +53,8 @@ def register(request):
                 description = form.cleaned_data['description']
                 address = form.cleaned_data['address']
                 profile_pic = request.FILES['profile_pic']
-                 # last_name = request.POST['last_name']
                 item = Users(request.user.id, first_name, last_name, email, type, birth_date, description, address, profile_pic)
                 item.save(); 
-                # last_name = request.POST['last_name']
-                # email = request.POST['email']
-                # type = request.POST['type']
-                # birth_date = request.POST['birth_date']
-                # description = request.POST['description']
-                # address = request.POST['address']
-                # profile_pic= request.FILES['profile_pic']
-                # user = Users(request.user.id , first_name = first_name, last_name = last_name, email = email, type = type, birth_date = birth_date, description= description, address = address, profile_pic = profile_pic)
-                # user.save()
                 return redirect('/')
             else:
                 return render(request, 'base/signup.html')
@@ -85,6 +76,12 @@ def edit_profile(request, pk):
         
     return render(request, 'base/register.html', {'form': form})
 
+# def delete_profile(request, pk):
+#     item = Users.objects.get(id=pk)
+#     form = Register(request.POST, request.FILES, instance=item) 
+#     item.is_delete = True
+#     item.save()
+#     return redirect('faculty-list')
 
 
 @login_required(login_url='/login/') 
@@ -118,3 +115,42 @@ def signin(request):
     else:
         form = AuthenticationForm()
         return render(request, 'base/login.html', {'form': form})
+
+inc=0
+@login_required(login_url='/login/') 
+def create_chore(request):
+        print("not valid")
+        if request.method == 'POST':
+            form = ChoreForm(request.POST)
+            print(request.user.id)
+            if form.is_valid():
+                print(" valid")
+                title = form.cleaned_data['title']
+                description = form.cleaned_data[ 'description']
+                date= form.cleaned_data['date']
+                start_hour= form.cleaned_data['start_hour']
+                time = form.cleaned_data['time']
+                global inc
+                inc+=3
+                chore = Chore(request.user.id,1,inc, title, description, date, start_hour, time)
+                chore.save(); 
+                return redirect('/')
+            else:
+                return render(request, 'base/signup.html')
+        else:
+            form = ChoreForm(request.POST)
+        return render(request, 'base/create_chore.html', {'form': form})
+
+
+
+@login_required(login_url='/login/') 
+def my_chores(request):
+    #item = Users.objects.get( pk = request.user.id)
+    chore = Chore.objects.all()
+    #context = {'item': item, 'chore': chore}     
+    return render(request, 'base/my_chores.html', {'chore': chore})
+
+        # chores = Chore.objects.filter(user_id = int(request.user.id))
+        # item = Users.objects.get(pk = request.user.id)
+        # context = {'chores': chores, "item": item}
+        # return render(request, 'base/my_chores.html', context)

@@ -7,7 +7,7 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <title>Profile - Student</title>
+        <title>Create Chore</title>
         {% load static %}
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -41,43 +41,33 @@
         </div>
     </nav>
     <div class="container">
-      <h1>Register</h1>
-      <form  method="post", enctype="multipart/form-data", action="{% url 'register'%}" >
+      <h1>Create Chore</h1>
+      <form  method="post", enctype="multipart/form-data", action="{% url 'create_chore' %}" >
         {% csrf_token %}
             <div class="form-group", style="max-width: 300px;"style="margin-top: 30px;">
-                First Name:
-                {{ form.first_name }}
+                Title:
+                {{ form.title }}
             </div>
     
             <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Last Name:
-                {{ form.last_name }}
+                Description of the job:<br style="margin-top: 30px;">
+                {{ form.description }}
             </div>
 
             <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Email:
-              {{ form.email }}
+                Job Date:
+              {{ form.date }}
+            </div>
+
+            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
+                Start Hour:
+                {{ form.start_hour }}
             </div>
             <div class="form-group", style="margin-top: 30px;", style="width: 300px;">
-                Type:
-              {{ form.type }}
+                Requaiered Job Time:
+              {{ form.time }}
             </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Birthday:
-              {{ form.birth_date }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                A little bit about yourself...<br style="margin-top: 30px;">
-                {{ form.description }}
-             </div>
-             <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Address:
-                {{ form.address }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Upload yout picture...
-                {{ form.profile_pic }}
-            </div> 
+
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Submit">
             </div>
