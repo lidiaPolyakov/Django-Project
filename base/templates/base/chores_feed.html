@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Profile - Student</title>
+        {% load static %}
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+<body>
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCEFCD;">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="{% url 'profile' %}">
+            <img 
+                src= "{% static 'images\ElderLogo.PNG' %}"
+                class="rounded float-start" 
+                alt="logo" 
+                width="70" 
+                height="70"
+            />
+        </a>
+        <!-- Profile -->
+        <a class="d-flex align-items-center hidden-arrow" href="{% url 'profile' %}">
+            <img
+                src="/media/{{item.profile_pic}}"
+                class="rounded-circle float-end"
+                height="50"
+                alt="profile"
+            />
+        </a>
+    </div>
+</nav>
+
+<section class="card-body text-center">
+    <h2>Chores Feed</h2>
+    <br>
+    <div class="align-items-center", style="display: flex; flex-direction: column;">
+
+        {% for chores in chore %}
+
+            <div class="card-body text-center", style="width: 750px;" >
+                <h5 class="card-header">{{ chores.title }}</h5>
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="card-title">{{ chores.date }}</h5>
+                            <p class="card-text">{{ chores.description }}</p>
+                            <p class="card-text">{{ chores.start_hour }}</p>
+                            <p class="card-text">{{ chores.time }}</p>
+                            <a href="{% url 'register_chore' pk=chores.creation_time %}" class="btn" style="background-color: #FCEFCD; color: black;">register</a>
+                            <a href="{% url 'view_elder_profile' pk=chores.user_id_id %}" class="btn" style="background-color: #FCEFCD; color: black;">view elder profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+</section>  
+
+    
+    <footer class="page-footer" style="background-color: #FCEFCD; overflow: hidden; position: fixed; bottom: 0; width: 100%;">
+        <div class="d-flex justify-content-around">
+            {% if item.type == 'S' %}
+            <a href="{% url 'my_registrations' %}">
+                <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
+            </a>
+            {% else %}
+            <a href="{% url 'my_chores' %}">
+                <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
+            </a>
+            {% endif %}
+             {% if item.type == 'S' %}
+            <a href="{% url 'chores_feed' %}">
+                <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
+            </a>
+            {% else %}
+            <a href="{% url 'create_chore' %}">
+                <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
+            </a>
+            {% endif %}
+            <a href="{% url 'profile' %}"  >
+                <img src="{% static 'images\profileIcon.PNG' %}" height="65" alt="Profile">
+            </a>
+        </div>
+    </footer>
+  {% endblock %}
+
+  
+
+ 
+</body>
+</html>

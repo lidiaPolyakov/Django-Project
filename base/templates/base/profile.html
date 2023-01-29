@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCEFCD;">
           <div class="container-fluid">
               <!-- Logo -->
-              <a class="navbar-brand" href="choresFeed2.html">
+              <a class="navbar-brand" href="{% url 'profile' %}">
                   <img 
                       src= "{% static 'images\ElderLogo.PNG' %}"
                       class="rounded float-start" 
@@ -27,7 +27,7 @@
                   />
               </a>
               <!-- Profile -->
-              <a class="d-flex align-items-center hidden-arrow" href="myProfile2.html">
+              <a class="d-flex align-items-center hidden-arrow" href="{% url 'profile' %}">
                   <img
                       src="/media/{{item.profile_pic}}"
                       class="rounded-circle float-end"
@@ -63,21 +63,25 @@
                             <h4 class="mb-2"> {{ item.first_name }} {{ item.last_name }}</h4>
                             <p class="text-muted mb-4"> {{ item.description }}</p>
     
-                            <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                            <div class="d-flex justify-content-between text-center mt-5 mb-2", style="display: flex; flex-direction: column;">
                                 <div>
                                     <p class="mb-2 h5">Address</p>
                                     <p class="text-muted mb-0">{{ item.address }}</p>
                                 </div>
-                                <div class="px-3">
+                                <div class="px-3", style="margin-top: 30px;">
                                     <p class="mb-2 h5">Email</p>
                                     <p class="text-muted mb-0">{{ item.email }}</p>
                                 </div>
+                                <div class="px-3", style="margin-top: 30px;">
+                                    <p class="mb-2 h5">Birthday</p>
+                                    <p class="text-muted mb-0">{{ item.birth_date }}</p>
+                                </div>
 
                                 {% if item.type == 'S' %}
-                                <div>
+                                <div, style="margin-top: 30px;">
                                     <p class="mb-2 h5">Volunteer left hours</p>
                                     <p class="text-muted mb-0">{{item.remaining_hours }}</p>
-                                </div>
+                                </div,>
                                 {% endif %}
 
                             </div>
@@ -97,11 +101,17 @@
 
     <footer class="page-footer" style="background-color: #FCEFCD; overflow: hidden; position: fixed; bottom: 0; width: 100%;">
         <div class="d-flex justify-content-around">
+            {% if item.type == 'S' %}
+            <a href="{% url 'my_registrations' %}">
+                <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
+            </a>
+            {% else %}
             <a href="{% url 'my_chores' %}">
                 <img src="{% static 'images\toDoListIcon.PNG' %}" height="65" alt="My registrations">
             </a>
+            {% endif %}
              {% if item.type == 'S' %}
-            <a href="choresFeed2.html">
+            <a href="{% url 'chores_feed' %}">
                 <img src="{% static 'images\homeIcon.PNG' %}" height="65" alt="Home">
             </a>
             {% else %}

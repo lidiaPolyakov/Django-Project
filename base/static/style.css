@@ -29,7 +29,15 @@ a {
     background: linear-gradient(to right, #FCEFCD(106, 17, 203, 1), #FCEFCD(37, 117, 252, 1))
 }
 
+/* form */
+    
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
 
-[contentEditable=true]:empty:not(:focus):before {
-    content: attr(data-text)
-  }
+.card-registration .select-arrow {
+    top: 13px;
+}

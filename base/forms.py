@@ -13,4 +13,4 @@ class Register(ModelForm):
 class ChoreForm(ModelForm):    
     class Meta:
         model = Chore
-        fields = ['title', 'description', 'date', 'start_hour', 'time']
+        fields = ['title', 'description', 'date', 'start_hour', 'time', 'status']

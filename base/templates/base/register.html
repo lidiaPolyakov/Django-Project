@@ -20,7 +20,7 @@
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FCEFCD;">
         <div class="container-fluid">
             <!-- Logo -->
-            <a class="navbar-brand" href="choresFeed2.html">
+            <a class="navbar-brand" href="{% url 'profile' %}">
                 <img 
                     src= "{% static 'images\ElderLogo.PNG' %}"
                     class="rounded float-start" 
@@ -29,64 +29,114 @@
                     height="70"
                 />
             </a>
-            <!-- Profile -->
-            <a class="d-flex align-items-center hidden-arrow" href="myProfile2.html">
-                <img
-                    src="/media/{{item.profile_pic}}"
-                    class="rounded-circle float-end"
-                    height="50"
-                    alt="profile"
-                />
-            </a>
         </div>
     </nav>
-    <div class="container">
-      <h1>Register</h1>
-      <form  method="post", enctype="multipart/form-data", action="{% url 'register'%}" >
-        {% csrf_token %}
-            <div class="form-group", style="max-width: 300px;"style="margin-top: 30px;">
-                First Name:
-                {{ form.first_name }}
-            </div>
-    
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Last Name:
-                {{ form.last_name }}
-            </div>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <h1>Register</h1>
+                            <form  method="post", enctype="multipart/form-data", action="{% url 'register'%}" >
+                                {% csrf_token %}
+                                    
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                First Name:
+                                                <br>
+                                                {{ form.first_name }}
+                                        </div>
+                                    </div>
+                                </div>      
+                            
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Last Name:
+                                                    <br>
+                                                    {{ form.last_name }}
+                                            </div>
+                                        </div>
+                                    </div>      
+                                
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Email:
+                                                    <br>
+                                                    {{ form.email }}
+                                            </div>
+                                        </div>
+                                    </div>                                        
 
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Email:
-              {{ form.email }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="width: 300px;">
-                Type:
-              {{ form.type }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Birthday:
-              {{ form.birth_date }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                A little bit about yourself...<br style="margin-top: 30px;">
-                {{ form.description }}
-             </div>
-             <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Address:
-                {{ form.address }}
-            </div>
-            <div class="form-group", style="margin-top: 30px;", style="max-width: 300px;">
-                Upload yout picture...
-                {{ form.profile_pic }}
-            </div> 
-            <div class="form-group">
-                <input class="btn btn-primary" type="submit" value="Submit">
-            </div>
-      </form>
-    </div>
-    {% endblock %}
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Type:
+                                                    <br>
+                                                    {{ form.type }}
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Birthday:
+                                                    <br>
+                                                    {{ form.birth_date }}
+                                            </div>
+                                        </div>
+                                     </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Address:
+                                                    <br>
+                                                    {{ form.address }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                     
+                                
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;">
+                                                    Upload yout picture...
+                                                    <br>
+                                                    {{ form.profile_pic }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline datepicker w-100", style="margin-top: 30px;", style="margin-left: 30px;">
+                                                    A little bit about yourself...<br>
+                                                    {{ form.description }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mt-4 pt-2", style="margin-top: 30px;"/>
+                                        <input class="btn btn-lg" type="submit" value="Submit" >
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+                            
 
   </body>
+  {% endblock %}
+
 </html>
     <!-- <a href=""><button type="submit" class="btn btn-success">Register</button></a>
 

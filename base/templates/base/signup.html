@@ -1,18 +1,47 @@
-{% extends 'base.html' %}
-  
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Login - Student</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+<body>
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit" class="btn btn-success">Sign up</button>
-  </form>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                      <div class="card-body p-5 text-center">
+                          <div class="mb-md-5 mt-md-4 pb-5">
+                                <img src="{% static 'images\ElderLogo.PNG' %}" class="text-center" style="width: 100px;" alt="logo">
+                                  <p class="text-white-50 mb-5">Sign Up</p>     
+                                <form method="post">
+                                  {% csrf_token %}
+                                  {% for field in form %}
+                                    <p>
+                                      {{ field.label_tag }}<br>
+                                      {{ field }}
+                                      {% for error in field.errors %}
+                                        <p style="color: red">{{ error }}</p>
+                                      {% endfor %}
+                                    </p>
+                                  {% endfor %}
+                                  <button type="submit"  class="btn btn-outline-light btn-lg px-5" >Sign up</button>
+                                </form>
+                          </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+</body>
+</html>
