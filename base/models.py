@@ -3,6 +3,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.conf import settings
 
+now = timezone.localtime(timezone.now()).time()
+now_with_seconds = now.strftime("%H:%M:%S")
+
 class Users(models.Model):
     TYPE = (
         ('S', 'Student'),
@@ -42,17 +45,16 @@ class Chore(models.Model):
         ('16:30', '16:30'),
         ('17:00', '17:00'),
     )
-    TIME = (('30 min', '30 min'), ('1 hour', '1 hour'),  ('1.5 hour', '1.5 hour'), ('2 hours', '2 hours'), ('2.5 hours', '2.5 hours'), ('3 hours', '3 hours'),)
+    TIME = ( ('1', '1'), ('2', '2'), ('3', '3'),('4', '4'),)
     STATUS = (( 'Pending', 'Pending'), ('Registed', 'Registed'), ('Done', 'Done'),)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_id')
     student_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, related_name='student_id')
-    #chore_id = models.IntegerField(default=1)
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField( primary_key=True)
     date= models.CharField(max_length=200)
     start_hour = models.CharField(max_length=5, choices=HOUR)
     time = models.CharField(max_length=200, choices=TIME)
     status = models.CharField(max_length=200, choices=STATUS, default='Pending')
-    creation_time = models.DateTimeField(primary_key=True, default= timezone.now())
+    creation_time = models.CharField(max_length=200, default= now_with_seconds)
     class Meta:
          db_table = 'base_chores'

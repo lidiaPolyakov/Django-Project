@@ -54,7 +54,7 @@
                             <p class="card-text">{{ chores.description }}</p>
                             <p class="card-text">{{ chores.start_hour }}</p>
                             <p class="card-text">{{ chores.time }}</p>
-                            <a href="{% url 'register_chore' pk=chores.creation_time %}" class="btn" style="background-color: #FCEFCD; color: black;">register</a>
+                            <a href="{% url 'register_chore' pk=chores.description %}" class="btn" style="background-color: #FCEFCD; color: black;">register</a>
                             <a href="{% url 'view_elder_profile' pk=chores.user_id_id %}" class="btn" style="background-color: #FCEFCD; color: black;">view elder profile</a>
                         </div>
                     </div>

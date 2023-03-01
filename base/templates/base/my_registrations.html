@@ -52,12 +52,12 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body">
-                                <h5 class="card-title">{{ chores.date }}</h5>
+                                <h5 class="card-title">{{ chores.date }} Hours</h5>
                                 <p class="card-text">{{ chores.description }}</p>
                                 <p class="card-text">{{ chores.start_hour }}</p>
                                 <p class="card-text">{{ chores.time }}</p>
-                                <a href="{% url 'unregister' pk=chores.creation_time %}" class="btn" style="background-color: #FCEFCD; color: black;">unregister</a>
-                                <a href="{% url 'unregister' pk=chores.creation_time %}" class="btn" style="background-color: #FCEFCD; color: black;">view elder profile</a>
+                                <a href="{% url 'unregister' pk=chores.description%}" class="btn" style="background-color: #FCEFCD; color: black;">unregister</a>
+                                <a href="{% url 'unregister' pk=chores.description %}" class="btn" style="background-color: #FCEFCD; color: black;">view elder profile</a>
                             </div>
                         </div>
                     </div>

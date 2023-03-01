@@ -51,16 +51,16 @@
                                                 <h5 class="card-title">{{ item.first_name }} {{ item.last_name }}</h5>
                                                 <p class="mb-2">{{ chores.date }}</p>
                                                 <p class="card-text">{{ chores.start_hour }}</p>
-                                                <p class="card-text">{{ chores.time }}</p>
+                                                <p class="card-text">{{ chores.time }} Hours</p>
                                                 <p class="card-text">{{ chores.description }}</p>
                                                 <p class="card-text">{{ chores.status}}</p>
-                                                <a href="{% url 'edit_chore' pk=chores.creation_time %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
+                                                <a href="{% url 'edit_chore' pk=chores.description %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
                                                     edit
                                                 </a>
-                                                <a href="{% url 'delete_chore' pk=chores.creation_time %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
+                                                <a href="{% url 'delete_chore' pk=chores.description %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
                                                     delete
                                                 </a>
-                                                <a href="{% url 'done_chore' pk=chores.creation_time %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
+                                                <a href="{% url 'done_chore' pk=chores.description %}" class="btn btn-rounded btn-lg" style="background-color: #FCEFCD; color: black;">
                                                     Done
                                                 </a>
                                             </div>

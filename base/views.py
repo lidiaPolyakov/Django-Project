@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout
 #from django.shortcuts import HttpResponseRedirect
 #from django.http import HttpResponse
+import datetime
+from django.core.exceptions import ValidationError
 
 from .forms import Register, ChoreForm
 from .models import Users, Chore
@@ -49,6 +51,8 @@ def register(request):
                 email = form.cleaned_data['email']
                 type = form.cleaned_data['type']
                 birth_date= form.cleaned_data['birth_date']
+                if birth_date > str(datetime.date.today()):
+                    raise ValidationError("The date can not be in the futuer!")
                 description = form.cleaned_data['description']
                 address = form.cleaned_data['address']
                 profile_pic = request.FILES['profile_pic']
@@ -135,6 +139,8 @@ def create_chore(request):
                 title = form.cleaned_data['title']
                 description = form.cleaned_data[ 'description']
                 date= form.cleaned_data['date']
+                if date < str(datetime.date.today()):
+                    raise ValidationError("The date can not be in the past!")
                 start_hour= form.cleaned_data['start_hour']
                 time = form.cleaned_data['time']
                 status = form.cleaned_data['status']
@@ -157,7 +163,7 @@ def delete_chore(request,pk):
 @login_required(login_url='/login/')
 def edit_chore(request, pk):
     chore = Chore.objects.get(pk = pk)
-    Chore.objects.all().filter(creation_time=pk).delete()
+    Chore.objects.all().filter(description=pk).delete()
     if (request.method == 'POST'):
         form = ChoreForm(request.POST, instance=chore)
         if form.is_valid():
@@ -173,8 +179,11 @@ def edit_chore(request, pk):
 @login_required(login_url='/login/')
 def done_chore(request,pk):
     chore = Chore.objects.get(pk = pk)
+    student =  Users.objects.get( pk = chore.student_id)
+    student.remaining_hours = student.remaining_hours - int(chore.time)
     chore.status = 'Done'
     chore.save()
+    student.save()
     return redirect('/')
 
 @login_required(login_url='/login/')
@@ -205,7 +214,7 @@ def register_chore(request, pk):
 @login_required(login_url='/login/')
 def my_registrations(request):
     item = Users.objects.get( pk = request.user.id)
-    chore = Chore.objects.all().filter(student_id=request.user.id).order_by('creation_time').values()
+    chore = Chore.objects.all().filter(student_id=request.user.id).filter(status='Registed').order_by('creation_time').values()
     context = {'item': item, 'chore': chore}
     return render(request, 'base/my_registrations.html', context)
 
@@ -214,7 +223,7 @@ def my_registrations(request):
 def unregister(request,pk):
     chore = Chore.objects.get(pk = pk)
     chore.status = 'Pending'
-    student=Users.objects.get( pk =1)
+    student=Users.objects.get( pk =chore.student_id)
     chore.student_id=student.user_id
     chore.save()
     return redirect('/')

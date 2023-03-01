@@ -82,9 +82,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'elderproject',
         'USER':'root',
-        'PASSWORD': 'Aa3518!!',
         'PORT': 3306,
         'HOST': '127.0.0.1',
+        'PASSWORD': 'Aa3518!!',
     }
 }
 
@@ -135,7 +135,7 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATE_INPUT_FORMATS = "%d-%m-%Y"
+DATE_INPUT_FORMATS = "%Y-%m-%d"
 USE_L10N = False
 
 

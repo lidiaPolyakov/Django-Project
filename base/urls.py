@@ -23,9 +23,6 @@ urlpatterns = [
     path('edit_chore/<str:pk>/',views.edit_chore, name='edit_chore'),
     path('delete_chore/<str:pk>/',views.delete_chore, name='delete_chore'),
     path('done_chore/<str:pk>/',views.done_chore, name='done_chore'),
-    
-    #path('delete_profile/<str:pk>/',views.delete_profile, name='delete_profile'),
-    #path(r'form',views.register, name='register'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT )
